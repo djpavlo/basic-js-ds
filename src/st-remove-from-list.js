@@ -18,8 +18,27 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   this.next = null;
  * }
  */
+// var head; // head of list
+module.exports = function removeKFromList(l, k) {
+    var temp = l,
+        prev = null;
 
-module.exports = function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+    // If head node itself holds the key to be deleted
+    if (temp != null && temp.value == k) {
+        l = temp.next; // Changed head        
+    }
+    // Search for the key to be deleted, keep track of
+    // the previous node as we need to change temp.next
+    while (temp != null && temp.next != null /*&& temp.value != k*/ ) {
+        prev = temp;
+        temp = temp.next;
+        if (temp.value == k) {
+            // Unlink the node from linked list
+            prev.next = temp.next;
+        }
+    }
+
+    return l;
+
+
 }
